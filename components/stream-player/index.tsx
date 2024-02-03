@@ -1,6 +1,11 @@
 "use client";
 
+import { LiveKitRoom } from "@livekit/components-react";
+
+import { cn } from "@/lib/utils";
 import { useViewerToken } from "@/hooks/use-viewer-token";
+
+import { Video, VideoSkeleton } from "./video";
 
 type CustomStream = {
   id: string;
@@ -39,8 +44,18 @@ export const StreamPlayer = ({
   }
 
   return (
-    <div>
-      <h1>Allowed to watch the stream</h1>
-    </div>
+    <>
+      <LiveKitRoom
+        token={token}
+        serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
+        className={cn(
+          "grid h-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3 2xl:grid-cols-6",
+        )}
+      >
+        <div className="hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto xl:col-span-2 2xl:col-span-5">
+          <Video hostName={user.username} hostIdentity={user.id} />
+        </div>
+      </LiveKitRoom>
+    </>
   );
 };

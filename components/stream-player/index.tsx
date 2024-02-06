@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 
+import { InfoCard } from "./info-card";
 import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
 import { ChatToggle } from "./chat-toggle";
@@ -75,6 +76,12 @@ export const StreamPlayer = ({
             name={stream.name}
           />
         </div>
+        <InfoCard
+          hostIdentity={user.id}
+          viewerIdentity={identity}
+          name={stream.name}
+          thumbnailUrl={stream.thumbnailUrl}
+        />
         <div className={cn("col-span-1", collapsed && "hidden")}>
           <Chat
             viewerName={name}
@@ -96,6 +103,7 @@ export const StreamPlayerSkeleton = () => {
     <div className="grid h-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3 2xl:grid-cols-6">
       <div className="hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto xl:col-span-2 2xl:col-span-5">
         <VideoSkeleton />
+        <HeaderSkeleton />
       </div>
       <div className="col-span-1 bg-background">
         <ChatSkeleton />

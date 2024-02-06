@@ -10,6 +10,7 @@ import { useViewerToken } from "@/hooks/use-viewer-token";
 import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
 import { ChatToggle } from "./chat-toggle";
+import { Header, HeaderSkeleton } from "./header";
 
 type CustomStream = {
   id: string;
@@ -65,6 +66,14 @@ export const StreamPlayer = ({
       >
         <div className="hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto xl:col-span-2 2xl:col-span-5">
           <Video hostName={user.username} hostIdentity={user.id} />
+          <Header
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            imageUrl={user.imageUrl}
+            isFollowing={isFollowing}
+            name={stream.name}
+          />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
           <Chat

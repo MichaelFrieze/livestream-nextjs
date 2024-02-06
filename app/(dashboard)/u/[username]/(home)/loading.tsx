@@ -1,7 +1,9 @@
+import { StreamPlayerSkeleton } from "@/components/stream-player";
+
 const CreatorLoading = () => {
   return (
     <div className="h-full">
-      <h1>Stream Player Skeleton</h1>
+      <StreamPlayerSkeleton />
     </div>
   );
 };

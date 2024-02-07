@@ -8,9 +8,10 @@ import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 
 import { InfoCard } from "./info-card";
+import { AboutCard } from "./about-card";
+import { ChatToggle } from "./chat-toggle";
 import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
-import { ChatToggle } from "./chat-toggle";
 import { Header, HeaderSkeleton } from "./header";
 
 type CustomStream = {
@@ -75,13 +76,20 @@ export const StreamPlayer = ({
             isFollowing={isFollowing}
             name={stream.name}
           />
+          <InfoCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
+          />
         </div>
-        <InfoCard
-          hostIdentity={user.id}
-          viewerIdentity={identity}
-          name={stream.name}
-          thumbnailUrl={stream.thumbnailUrl}
-        />
         <div className={cn("col-span-1", collapsed && "hidden")}>
           <Chat
             viewerName={name}
